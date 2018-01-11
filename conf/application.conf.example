@@ -1,0 +1,13 @@
+twitter {
+    consumerKey = "FIXME"
+	consumerSecret = "FIXME"
+	accessToken = "FIXME"
+	accessTokenSecret = "FIXME"
+}
+
+eventhub {
+    namespaceName = "FIXME"
+    eventHubName = "FIXME"
+    sasKeyName = "FIXME"
+    sasKey = "FIXME"
+}

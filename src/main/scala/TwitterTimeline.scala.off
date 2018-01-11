@@ -1,0 +1,41 @@
+import twitter4j.TwitterFactory
+import twitter4j.Twitter
+import twitter4j.Paging
+import twitter4j.conf.ConfigurationBuilder
+import com.typesafe.config.ConfigFactory
+
+object TwitterTimeline {
+
+  def main(args : Array[String]) {
+
+    val conf = ConfigFactory.load()
+    val twitterConfig = conf.getConfig("twitter")
+    // (1) config work to create a twitter object
+    val cb = new ConfigurationBuilder()
+    cb.setDebugEnabled(true)
+      .setOAuthConsumerKey(twitterConfig.getString("consumerKey"))
+      .setOAuthConsumerSecret(twitterConfig.getString("consumerSecret"))
+      .setOAuthAccessToken(twitterConfig.getString("accessToken"))
+      .setOAuthAccessTokenSecret(twitterConfig.getString("accessTokenSecret"))
+    val tf = new TwitterFactory(cb.build())
+    val twitter = tf.getInstance()
+
+    // (2) use the twitter object to get your friend's timeline
+    val pages = Array(1, 2, 3, 4)
+    pages.map( page => {
+        println("--- page "+page+" ----------")
+        val paging: Paging = new Paging(page, 200);
+
+        val statuses = twitter.getHomeTimeline(paging)
+        System.out.println("Showing friends timeline.")
+        val it = statuses.iterator()
+        while (it.hasNext()) {
+        val status = it.next()
+        println(status.getUser().getName() + ":" +
+                status.getText());
+        }
+        println("------------------------")
+    })
+
+  }
+}

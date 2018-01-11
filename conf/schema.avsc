@@ -1,0 +1,12 @@
+{
+    "namespace": "twitter-avro.test",
+    "type": "record",
+    "name": "tweet",
+    "fields":[
+         {"name": "id", "type": "long"},
+         {"name": "userid", "type": "long"},
+         {"name": "created_at", "type": "string"},
+         {"name": "name", "type": "string"},
+         {"name": "message", "type": "string"}
+    ]
+}
