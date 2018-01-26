@@ -21,3 +21,5 @@ libraryDependencies ++= Seq(
 //   "io.circe" %% "circe-generic",
 //   "io.circe" %% "circe-parser"
 // ).map(_ % circeVersion)
+
+mainClass in (Compile, run) := Some("io.kensu.frbayart.TwitterStreamer")
